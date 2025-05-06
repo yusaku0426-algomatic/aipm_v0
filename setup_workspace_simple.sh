@@ -43,12 +43,12 @@ log_error() {
 setup_default_config() {
   # ルールリポジトリ
   RULE_REPOS=(
-    "https://github.com/miyatti777/rules_basic.git|.cursor/rules/basic"
+    "https://github.com/miyatti777/rules_basic_public.git|.cursor/rules/basic"
   )
   
   # スクリプトリポジトリ
   SCRIPT_REPOS=(
-    "https://github.com/miyatti777/scripts.git|scripts"
+    "https://github.com/miyatti777/scripts.git|scripts_public"
   )
   
   # プログラムリポジトリ

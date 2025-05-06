@@ -23,7 +23,7 @@ RULE_REPOS=(
 
 # スクリプトリポジトリ
 SCRIPT_REPOS=(
-  "https://github.com/miyatti777/scripts.git|scripts"
+  "https://github.com/miyatti777/scripts_public.git|scripts"
   # 必要に応じて追加 （追加するときはカンマなどで区切らず、改行のみでOK）
   # "https://github.com/username/custom_scripts.git|scripts/custom"
 )

@@ -1,0 +1,29 @@
+# SpecStory explanation file
+.specstory
+# SpecStory explanation file
+.specstory/.what-is-this.md
+
+# macOS用の.gitignore
+
+# macOSシステムファイル
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# 個別フォルダ内のDSストアも明示的に除外
+**/.DS_Store
+
+# Cursor関連ファイル
+.cursorindexingignore
+
+# エディタ関連ファイル
+.vscode/
+
+# その他の一般的な除外ファイル
+*.log
+*.tmp

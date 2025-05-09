@@ -83,10 +83,11 @@
 │       └── (additional_rules)/  # プロジェクト別特化ルール
 ├── Flow/              # 日付ごとのドラフト文書
 │   ├── YYYYMM/        # 年月フォルダ
-│     ├── YYYY-MM-DD/    # 作業日ごとのフォルダ
-│     │   ├── draft_project_charter.md
-│     │   └── ...
-│     └── ...
+│   │   ├── YYYY-MM-DD/    # 作業日ごとのフォルダ
+│   │   │   ├── draft_project_charter.md
+│   │   │   └── ...
+│   │   └── ...
+│   └── templates/     # テンプレート
 ├── Stock/             # 確定済み文書
 │   ├── programs/      # プログラム（プロジェクトのまとまり）単位でのフォルダ
 │   │   └── PROGRAM_NAME/  # プログラムフォルダ
@@ -100,6 +101,8 @@
 │   │                   ├── 4_executing/
 │   │                   ├── 5_monitoring/
 │   │                   └── 6_closing/
+│   └── shared/         # 共有テンプレート
+│       └── templates/
 └── Archived/          # 完了プロジェクト
     └── programs/      # アーカイブ済みプログラム
 ```
@@ -123,11 +126,27 @@ Cursorの新規ウィンドウから簡単にセットアップできます：
 
 ### 初期設定
 
-```bash
-# 現在のディレクトリにワークスペースを構築
-./setup_workspace_simple.sh setup_config.sh
 
-```
+
+
+
+
+### プレゼンテーションの背景画像
+
+「プレゼン資料生成」コマンドを実行すると、タイトルスライド（lead）用の背景画像が自動的にassetsディレクトリにコピーされます。背景画像は次の方法で利用できます：
+
+1. **自動適用**: テーマCSS内で設定された背景画像が lead クラスのスライドに自動的に適用されます
+   
+2. **Markdown内で指定**: 特定のスライドに異なる背景画像を適用したい場合
+   ```markdown
+   ![bg](assets/bg_explaza.png)
+   ```
+
+3. **カスタム背景画像**: 独自の背景画像をアップロードし、`assets/` ディレクトリに配置すれば、同様の方法で使用できます
+
+現在利用可能な背景画像:
+- `bg_explaza.png`: explazaテーマ用の青系背景
+- `bg_brown.png`: modern-brownテーマ用の茶系背景
 
 ### セットアップスクリプトの主な機能
 
@@ -195,11 +214,13 @@ required_rule_files:
 - `basic/90_rule_maintenance.mdc` - ルール自体のメンテナンス用
 - `basic/flow_to_stock_rules.mdc` - 自動同期ルール
 
+
 ## 5. フェーズ別の使い方
 
 ### 0️⃣ 事前準備
 
 ```bash
+
 
 # プロジェクト作成ガイド
 「カレー作りたい　プロジェクト開始して」  # → プログラム名を尋ねられます
@@ -216,13 +237,16 @@ required_rule_files:
 ### 1️⃣ 立ち上げ（Initiating）
 
 ```
-
 # プロジェクト憲章作成
 「プロジェクト憲章を作成したい」  # LLMが質問に導きます
 # 質問に回答すると、Flow/YYYYMM/YYYY-MM-DD/draft_project_charter.md が生成されます
 
 # 内容確認後、確定反映
 「確定反映して」  # draft_project_charter.mdがStockフォルダに移動
+
+# プロダクト（プログラム）定義
+「プロダクト定義」  # プログラムレベルの定義書作成
+「確定反映して」  # 確定処理
 
 # ステークホルダー分析
 「ステークホルダー分析やりたい」  # 同様に質問と回答で文書作成
@@ -275,6 +299,17 @@ required_rule_files:
 # 市場規模推定
 「市場規模推定」  # TAM/SAM/SOM分析
 「確定反映して」
+```
+
+### 2️⃣-C プレゼンテーション（Presentation）
+
+```
+# プレゼン資料生成
+「プレゼン資料生成」  # Marpを使用したプレゼンテーション作成
+
+# プレゼン用の図表作成
+「図表生成」  # draw.ioテンプレートからの図表作成
+「確定反映して」  # 編集したプレゼン資料を確定
 ```
 
 ### 3️⃣ 計画（Planning）
@@ -436,6 +471,7 @@ AIは以下の詳細情報を含むペルソナを作成します：
 | コマンド | 説明 | 出力先 |
 |--------|------|-------|
 | 「プロジェクト初期化」 | プログラム・プロジェクト構造作成 | Stock/programs/<PROGRAM>/projects/<PROJECT>/ |
+| 「プロダクト定義」 | プロダクト（プログラム）定義書作成 | Flow/YYYYMM/YYYY-MM-DD/draft_program_definition.md |
 | 「プロジェクト憲章」 | プロジェクト憲章作成 | Flow/YYYYMM/YYYY-MM-DD/draft_project_charter.md |
 | 「ステークホルダー分析」 | ステークホルダー分析 | Flow/YYYYMM/YYYY-MM-DD/draft_stakeholder_analysis.md |
 
@@ -455,6 +491,12 @@ AIは以下の詳細情報を含むペルソナを作成します：
 | 「競合調査」 | 競合分析レポート | Flow/YYYYMM/YYYY-MM-DD/draft_competitor_research.md |
 | 「デスクリサーチ」 | 総合調査レポート | Flow/YYYYMM/YYYY-MM-DD/draft_desk_research.md |
 | 「市場規模推定」 | TAM/SAM/SOM分析 | Flow/YYYYMM/YYYY-MM-DD/draft_market_size_estimation.md |
+
+#### プレゼンテーションフェーズ
+| コマンド | 説明 | 出力先 |
+|--------|------|-------|
+| 「プレゼン資料生成」 | Marpによるスライド作成 | Flow/YYYYMM/YYYY-MM-DD/draft_presentation.md |
+| 「図表生成」 | Draw.io図表テンプレート作成 | Flow/YYYYMM/YYYY-MM-DD/assets/diagram.drawio |
 
 #### Planningフェーズ
 | コマンド | 説明 | 出力先 |

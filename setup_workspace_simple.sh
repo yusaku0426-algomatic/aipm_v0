@@ -224,6 +224,78 @@ create_fallback_directories() {
   done
 }
 
+# VSCodeの設定を更新
+setup_vscode_settings() {
+  log_info "VSCode設定を更新しています..."
+  
+  # .vscode ディレクトリ作成
+  mkdir -p "$ROOT_DIR/.vscode"
+  
+  # settings.json のパス
+  SETTINGS_JSON="$ROOT_DIR/.vscode/settings.json"
+  
+  # 設定データ
+  MARP_THEMES_SETTING='{
+  "markdown.marp.themes": [
+    ".cursor/rules/basic/templates/marp-themes/explaza.css",
+    ".cursor/rules/basic/templates/marp-themes/modern-brown.css"
+  ]
+}'
+  
+  # settings.json が存在するか確認
+  if [ -f "$SETTINGS_JSON" ]; then
+    log_info "既存のsettings.jsonを更新します"
+    
+    # すでに markdown.marp.themes 設定が含まれているか確認
+    if grep -q "markdown.marp.themes" "$SETTINGS_JSON"; then
+      log_info "markdown.marp.themes の設定はすでに存在します。スキップします。"
+    else
+      # JSON 形式を保持しながら設定を追加
+      # 最後の閉じ括弧を一時的に削除し、設定を追加してから閉じ括弧を戻す
+      sed -i.bak '$ s/}$/,/' "$SETTINGS_JSON"
+      sed -i.bak '$ s/,$//' "$SETTINGS_JSON"  # 末尾のカンマを削除
+      echo "$MARP_THEMES_SETTING" | sed 's/^{//' | sed 's/}$//' >> "$SETTINGS_JSON"
+      echo "}" >> "$SETTINGS_JSON"
+      rm -f "$SETTINGS_JSON.bak"
+      log_success "settings.jsonにマープテーマ設定を追加しました"
+    fi
+  else
+    # 新規作成
+    echo "$MARP_THEMES_SETTING" > "$SETTINGS_JSON"
+    log_success "settings.jsonを新規作成しました"
+  fi
+}
+
+# マープテーマCSSの背景画像パスを更新
+update_marp_theme_paths() {
+  log_info "マープテーマのパスを更新しています..."
+  
+  # テーマディレクトリ
+  THEME_DIR="$ROOT_DIR/.cursor/rules/basic/templates/marp-themes"
+  
+  # テーマディレクトリが存在するか確認
+  if [ ! -d "$THEME_DIR" ]; then
+    log_warning "テーマディレクトリが見つかりません: $THEME_DIR"
+    return 1
+  fi
+  
+  # 新しい絶対パス
+  NEW_PATH="$ROOT_DIR/.cursor/rules/basic/templates/marp-themes/assets"
+  
+  # CSSファイルのパスを更新
+  log_info "CSSファイル内の背景画像パスを更新中..."
+  for css_file in "$THEME_DIR"/*.css; do
+    if [ -f "$css_file" ]; then
+      # 背景画像の絶対パスを検索して置換
+      sed -i.bak "s|background-image: url(\"[^\"]*assets/|background-image: url(\"$NEW_PATH/|g" "$css_file"
+      rm -f "${css_file}.bak"
+      log_info "更新: $css_file"
+    fi
+  done
+  
+  log_success "マープテーマの背景画像パスを更新しました"
+}
+
 # メイン処理
 main() {
   echo "============================================================"
@@ -296,6 +368,12 @@ main() {
   
   # クローンされなかったディレクトリをフォールバックとして作成
   create_fallback_directories
+  
+  # VSCode設定を更新
+  setup_vscode_settings
+  
+  # マープテーマのパスを更新
+  update_marp_theme_paths
   
   # 完了メッセージ
   log_success "ワークスペースの構築が完了しました: $ROOT_DIR"

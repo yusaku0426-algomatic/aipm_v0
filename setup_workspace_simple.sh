@@ -48,7 +48,7 @@ setup_default_config() {
   
   # スクリプトリポジトリ
   SCRIPT_REPOS=(
-    "https://github.com/miyatti777/scripts.git|scripts_public"
+    "https://github.com/miyatti777/scripts_public.git|scripts"
   )
   
   # プログラムリポジトリ

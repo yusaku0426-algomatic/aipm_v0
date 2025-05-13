@@ -191,8 +191,8 @@ Cursorの設定からユーザールールを設定してください（推奨�
 # ※ pmbok_paths.mdc を最優先で読み込み、以降すべて
 #    {{dirs.*}} / {{patterns.*}} 変数でパスを参照する
 required_rule_files:
-  - /Users/<YOUR_USER>/{{PROJECT_ROOT}}/.cursor/rules/pmbok_paths.mdc
-  - /Users/<YOUR_USER>/{{PROJECT_ROOT}}/.cursor/rules/00_master_rules.mdc
+  - /Users/<YOUR_USER>/{{PROJECT_ROOT}}/.cursor/rules/basic/pmbok_paths.mdc
+  - /Users/<YOUR_USER>/{{PROJECT_ROOT}}/.cursor/rules/basic/00_master_rules.mdc
 ```
 
 

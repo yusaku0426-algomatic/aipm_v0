@@ -27,3 +27,7 @@ Thumbs.db
 # その他の一般的な除外ファイル
 *.log
 *.tmp
+
+.cursor/rules/basic
+Stock/programs/夕食作り
+scripts

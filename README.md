@@ -126,6 +126,30 @@ Cursorの新規ウィンドウから簡単にセットアップできます：
 
 ### 初期設定
 
+
+```bash
+# 現在のディレクトリにワークスペースを構築
+./setup_workspace_simple.sh setup_config.sh
+
+```
+
+### セットアップスクリプトの主な機能
+
+`setup_workspace_simple.sh` スクリプトを使用すると、以下の作業が自動的に行われます：
+
+1. **基本ディレクトリ構造の作成**
+   - Flow, Stock, Archived などの基本フォルダ
+   - ルールファイル用の .cursor/rules フォルダ
+   - プログラム用フォルダ Stock/programs
+
+2. **Flow内の年月日フォルダ作成**
+   - 現在の日付で Flow/YYYYMM/YYYY-MM-DD 形式のフォルダ作成
+
+3. **各種リポジトリのクローン**
+   - ルールリポジトリ（.cursor/rules/basic など）
+   - スクリプトリポジトリ（scripts ディレクトリ）
+   - プログラムリポジトリ（Stock/programs 配下）
+
 #### ユーザー設定（タスク管理用）
 
 タスク管理システムでは、バックログファイルからユーザーに割り当てられたタスクを抽出するために、ユーザー名の設定が必要です。以下の手順で設定してください：
@@ -167,23 +191,6 @@ Cursorの新規ウィンドウから簡単にセットアップできます：
 現在利用可能な背景画像:
 - `bg_explaza.png`: explazaテーマ用の青系背景
 - `bg_brown.png`: modern-brownテーマ用の茶系背景
-
-### セットアップスクリプトの主な機能
-
-`setup_workspace_simple.sh` スクリプトを使用すると、以下の作業が自動的に行われます：
-
-1. **基本ディレクトリ構造の作成**
-   - Flow, Stock, Archived などの基本フォルダ
-   - ルールファイル用の .cursor/rules フォルダ
-   - プログラム用フォルダ Stock/programs
-
-2. **Flow内の年月日フォルダ作成**
-   - 現在の日付で Flow/YYYYMM/YYYY-MM-DD 形式のフォルダ作成
-
-3. **各種リポジトリのクローン**
-   - ルールリポジトリ（.cursor/rules/basic など）
-   - スクリプトリポジトリ（scripts ディレクトリ）
-   - プログラムリポジトリ（Stock/programs 配下）
 
 ### User Rules 
 

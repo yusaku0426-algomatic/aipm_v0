@@ -1,33 +1,22 @@
-# SpecStory explanation file
-.specstory
-# SpecStory explanation file
-.specstory/.what-is-this.md
+# =================================================
+# General Directory .gitignore
+# Note: Common files (*.log, .DS_Store, etc.)
+#       are handled by global gitignore
+# =================================================
 
-# macOS用の.gitignore
-
-# macOSシステムファイル
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-Icon?
-ehthumbs.db
-Thumbs.db
-
-# 個別フォルダ内のDSストアも明示的に除外
-**/.DS_Store
-
-# Cursor関連ファイル
-.cursorindexingignore
-
-# エディタ関連ファイル
-.vscode/
-
-# その他の一般的な除外ファイル
-*.log
+# Temporary files
 *.tmp
+*.temp
+temp/
 
-.cursor/rules/basic
-Stock/programs/夕食作り
-scripts
+# Cache
+.cache/
+*.cache
+
+# Personal/private content
+personal/
+private/
+*.secret
+
+# Project-specific
+# (Add project-specific patterns here)

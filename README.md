@@ -1,6 +1,38 @@
 # 俺の考えた最強のAIPMシステム with Cursor Agent
 ## PMBOK × Lean UX × Agile ― 総合PMフレームワーク支援Rulesセット 利用ガイド
 
+[![GitHub Issues](https://img.shields.io/github/issues/yusaku0426-algomatic/aipm_v0)](https://github.com/yusaku0426-algomatic/aipm_v0/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/yusaku0426-algomatic/aipm_v0)](https://github.com/yusaku0426-algomatic/aipm_v0/pulls)
+[![Last Commit](https://img.shields.io/github/last-commit/yusaku0426-algomatic/aipm_v0)](https://github.com/yusaku0426-algomatic/aipm_v0/commits/main)
+
+> **プロジェクト状況**: Phase2 開発中（2025年7月-9月）  
+> **現在のフォーカス**: 鴻池運輸DX推進 全社生成AI推進プロジェクト Phase2
+
+## 🚀 クイックスタート
+
+```bash
+# リポジトリをクローン
+git clone https://github.com/yusaku0426-algomatic/aipm_v0.git
+cd aipm_v0
+
+# 基本セットアップを実行
+./setup_workspace_simple.sh
+
+# プロジェクト構造を初期化
+./setup_config.sh
+```
+
+## 📋 現在進行中のプロジェクト
+
+### 鴻池運輸株式会社 全社生成AI推進プロジェクト Phase2
+- **期間**: 2025年7月1日 - 2025年9月30日
+- **予算**: 約2,984万円
+- **主要成果物**: 
+  - 健康診断OCRワークフロー
+  - 規程集FAQワークフロー
+  - KPI計測システム
+- **進捗**: [プロジェクト憲章](Flow/202508/2025-08-12/鴻池運輸DX推進_全社生成AI推進プロジェクト_Phase2/draft_project_charter.md)
+
 このドキュメントは、PMBOK標準、Lean UX、およびアジャイル手法を融合したプロジェクト管理システムの使い方を説明するものです。
 
 **対象読者**: プロジェクト責任者 / PO / スクラムマスター / UX デザイナー / PMO ― 「ドキュメントも実装もユーザー価値も、すべて1本のレールで回したい」人たち
